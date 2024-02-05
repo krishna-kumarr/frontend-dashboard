@@ -1,18 +1,31 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { TiTickOutline } from "react-icons/ti";
 import { ImCancelCircle } from "react-icons/im";
 import { IoMdArrowDropleft } from "react-icons/io";
 import { IoMdNotificationsOutline } from "react-icons/io";
 import { AiTwotoneMessage } from "react-icons/ai";
-import { updateUsersArray } from "../../Redux/Redux";
-import { useSelector } from "react-redux";
+import { updateUsersArray, updateuserLogin } from "../../Redux/Redux";
+import { useDispatch, useSelector } from "react-redux";
+import "./user-home-css/userNavbar.css"
 
 export const UserNavbar = () =>{
     const State = useSelector(
         ({data})=>data
     )
+    const dispatch = useDispatch()
     const [messCount,setMessCount] = useState(0)
+    const [notifyCount,setNotifyCount] = useState(0)
     const [userDetails,setUserDetails] = useState({})
+
+    useEffect(()=>{
+        if(State.userLogin.length>0){
+            var friendRequest=State.userLogin[0].friendsArrayData.map((v,i)=>{
+                return v.status === "requested" ? v : null
+            })
+            setNotifyCount(friendRequest.length)
+        }
+        
+    },[])
 
     const handleHideSidebar = () =>{
         var hide = document.getElementsByClassName('logo-content');
@@ -29,6 +42,57 @@ export const UserNavbar = () =>{
             document.getElementsByClassName('logo-icon')[j].classList.toggle("col-12")
             document.getElementsByClassName('logo-icon')[j].classList.toggle("text-center")
         }
+    }
+
+    const handleRequestAccept = (reqId) =>{
+        var list=[]
+
+        for(var i=0;i<State.usersArray.length;i++){
+            if(State.usersArray[i].userName===State.userLogin[0].userName){
+                var array=[...State.usersArray[i].friendsArrayData]
+
+                for(var j=0;j<array.length;j++){
+                    if(array[j].friendId===reqId){
+                        var spread ={...State.usersArray[i]}
+                        // friend list array of object 
+                        var a={...spread.friendsArrayData[j]}
+                        a.status="accepted"
+
+                        var spliceFriendRequest=[...spread.friendsArrayData]
+                        spliceFriendRequest.splice(j,1,a)
+
+                        spread.friendsArrayData=spliceFriendRequest
+                        list.push(spread)
+
+                        // friend list array of usernames 
+                        var b=[...spread.friendsArray]
+                        b[b.length]=reqId
+                        spread.friendsArray=b
+                        
+                        dispatch(updateuserLogin([spread]))
+                        
+                    }
+                }
+            }
+            else{
+                list.push(State.usersArray[i])
+            }
+        }
+        dispatch(updateUsersArray(list))
+
+        // reset notification count 
+        var friendRequest=list.map((v,i)=>{
+            return v.friendsArrayData.filter((val,ind)=>{
+                return val.friendId=== "requested" ? v : null
+            }) 
+        })
+        setNotifyCount(friendRequest.length)
+
+        console.log(friendRequest.length)
+    }
+
+    const handleRequestReject = () =>{
+
     }
 
     return(
@@ -69,11 +133,23 @@ export const UserNavbar = () =>{
                             <div className="d-flex flex-wrap justify-content-end align-items-center">
                                 
                                 {/* notification  */}
-                                <div className="col-lg-2 col-xl-1 text-center admin-notifuicaion position-relative cursor" data-bs-toggle="modal" data-bs-target="#staticBackdropNotification">
+                                <div className="col-lg-2 col-xl-1 text-center admin-notifuicaion position-relative cursor" data-bs-toggle="modal" data-bs-target="#staticBackdropMessage">
                                     <AiTwotoneMessage className="fs-3 text-secondary "/>
                                     <span class="position-absolute top-0 start-75 translate-middle badge rounded-pill bg-danger">
                                         2
                                     </span>
+                                </div>
+                                {/* notification  */}
+                                <div className="col-lg-2 col-xl-1 text-center admin-notifuicaion position-relative cursor" data-bs-toggle="modal" data-bs-target="#staticBackdropNotification">
+                                    <IoMdNotificationsOutline className="fs-3 text-secondary "/>
+                                    {   
+                                        notifyCount>0 ? 
+                                            <span className="position-absolute top-0 start-75 translate-middle badge rounded-pill bg-danger">
+                                                {notifyCount}
+                                            </span>
+                                        : 
+                                            null
+                                    }
                                 </div>
                                 {/* profile  */}
                                 <div className="col-lg-2 col-xl-1 text-center admin-picture cursor" data-bs-toggle="modal" data-bs-target="#staticBackdropProfile">
@@ -89,7 +165,7 @@ export const UserNavbar = () =>{
             </div>     
 
               {/* Message modal box  */}
-              <div class="modal fade modal-xl" id="staticBackdropNotification" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+              <div class="modal fade modal-xl" id="staticBackdropMessage" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -120,6 +196,50 @@ export const UserNavbar = () =>{
                         </div>
                     </div>
                 </div>
+
+                 {/* Notifications modal box  */}
+                 <div className="modal fade modal-xl" id="staticBackdropNotification" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div className="modal-dialog">
+                        <div className="modal-content">
+                            <div className="modal-header">
+                                <h1 className="modal-title fs-5" id="staticBackdropLabel">Notifications</h1>
+                                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div className="modal-body">
+                                {
+                                    notifyCount!==0 ?
+                                        <div className="col-12 d-flex flex-wrap">
+                                            {State.userLogin[0].friendsArrayData.map((val,ind)=>{
+                                                return val.status==="requested" ? <div className="col-12 col-md-6 col-lg-3 d-flex flex-wrap border p-3 m-1" key={ind}>
+                                                                <p className="col-12 text-center text-warning">Friend request</p>
+                                                                <div className="col-6 text-center">
+                                                                    <p className="m-0">{val.friendId}</p>
+                                                                </div>
+                                                                <div className="col-6 d-flex flex-wrap ">
+                                                                    <div className="col-6 text-center">
+                                                                        <TiTickOutline className="fs-3 text-success cursor" onClick={()=>handleRequestAccept(val.friendId)}/>
+                                                                    </div>
+                                                                    <div className="col-6 text-center">
+                                                                        <ImCancelCircle className="fs-3 text-danger cursor" onClick={()=>handleRequestReject(val.friendId)}/>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                :
+                                                        null
+                                                }) 
+                                            }
+                                                        
+                                        </div>
+                                    :
+                                        <div className="col-12 text-center">
+                                            <p>No notification....</p>
+                                        </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+               
         </>
     )
 }

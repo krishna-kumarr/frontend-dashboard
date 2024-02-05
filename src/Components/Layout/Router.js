@@ -18,7 +18,7 @@ export const PageRedirector = () => {
     return(
         <BrowserRouter basename={process.env.PUBLIC_URL}>
             <Routes>
-                {/* <Route path="/" element={<Home/>}/>
+                <Route path="/" element={<Home/>}/>
                 <Route path="/admin/login" element={<AdminLogin/>}/>
 
 
@@ -41,11 +41,11 @@ export const PageRedirector = () => {
                 </Route>
 
 
-                 <Route path="/contact-us" element={<Contact/>}/> */}
+                 <Route path="/contact-us" element={<Contact/>}/>
 
-                <Route path="/" element={<UserHomePage/>}/>
+                {/* <Route path="/" element={<UserHomePage/>}/>
                 <Route path="/user/peoples" element={<Peoples/>}/>
-                <Route path="/user/timeline" element={<UserTimeline/>}/>
+                <Route path="/user/timeline" element={<UserTimeline/>}/> */}
 
 
             </Routes>

@@ -17,6 +17,7 @@
 .profile-button button{
     border: 1px solid rgb(55 153 155);
     padding: .3rem 3rem .3rem 1.5rem;
+    width: 85%;
     border-radius: 3rem;
     background-color: transparent;
     transition: all .3s ease-in-out;
@@ -36,4 +37,8 @@
 }
 .profile-button:hover .profile-button-position{
     color: white !important;;
+}
+.people-not-found{
+    min-height: 80vh;
+    max-height: 80vh;
 }

@@ -42,21 +42,21 @@ export const UserHomePage = () =>{
                                 <UserNavbar/>
 
                                 <div className="col-12 d-flex flex-wrap">
-                                    <div className="col-6 p-3">
+                                    <div className="col-12 col-md-12 col-lg-6 p-3">
                                         <div className="myhome border rounded p-5">
                                             <h4 className="text-color">Hii krishna</h4>
                                             <p className="text-color">Be happy and start your journey</p>
 
                                             <div className="col-12 d-flex flex-wrap mt-5">
-                                                <div className="col-4 border-start px-3 border-dark">
+                                                <div className="col-12 col-sm-6 col-md-4 border-start px-3 border-dark">
                                                     <h6>Total Tasks</h6>
                                                     <p className="text-center col-6 m-0">30</p>
                                                 </div>
-                                                <div className="col-4 border-start px-3 border-dark">
+                                                <div className="col-12 col-sm-6 col-md-4 border-start px-3 border-dark">
                                                     <h6>Task in progress</h6>
                                                     <p className="text-center col-6 m-0">30</p>
                                                 </div>
-                                                <div className="col-4 border-start px-3 border-dark">
+                                                <div className="col-12 col-sm-6 col-md-4 border-start px-3 border-dark">
                                                     <h6>Finished Tasks</h6>
                                                     <p className="text-center col-6 m-0">30</p>
                                                 </div>
@@ -93,18 +93,18 @@ export const UserHomePage = () =>{
                                         </div>
                                     </div>
 
-                                    <div className="col-6 p-3">
+                                    <div className="col-12 col-md-12 col-lg-6 p-3">
                                         <div className="myperformance border rounded p-5 d-flex flex-wrap">
                                             <div className="col-6 border-end">
                                                 <p className="col-12 px-4">My overall performance</p>
                                                 <div className="col-8 ms-4">
-                                                    <CircularProgressbar value={15} text={`${15}%`} />
+                                                    <CircularProgressbar value={0} text={`${0}%`} />
                                                 </div>
                                             </div>
                                             <div className="col-6 px-4">
                                                 <p>My friends overall performance</p>
                                                 <div className="">
-
+                                                    
                                                 </div>
                                             </div>
                                         </div>

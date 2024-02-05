@@ -30,7 +30,10 @@ export const Register = () =>{
         gender:'',
         socialMediaLinks:[],
         mobileNumber:'',
-        requesToAdmin:"processing"
+        requesToAdmin:"processing",
+        friendsArrayData:[],
+        friendsArray:[],
+        message:[]
     })
 
 

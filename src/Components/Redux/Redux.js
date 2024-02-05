@@ -12,7 +12,7 @@ export const Slice = createSlice({
         userLogin:[],
         timelineArray:[
             {
-                title:'2024 frontend timeline',
+                title:'2024 Frontend Roadmap',
                 TimeLineCharts:[
                             {
                                 heading:"Html",
