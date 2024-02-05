@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { UserNavbar } from "./UserNavbar";
 import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
+import { updateUserFriendsPerform } from "../../Redux/Redux";
 
 export const UserHomePage = () =>{
     const State = useSelector(
@@ -14,18 +15,44 @@ export const UserHomePage = () =>{
 
     const dispatch = useDispatch()
     const pageRender = useNavigate()
-
+    const [messCount,setMessCount] = useState(0)
+    const [notifyCount,setNotifyCount] = useState(0)
+    const [userDetails,setUserDetails] = useState({})
+    const [friendsPerformance,setFriendsPerformance] = useState([])
+    const [getFriendList,setGetFriendList]=useState([])
     useEffect(()=>{
-        // var messageCount = State.usersArray.filter((v,i)=>{
-        //     return v.requesToAdmin!=="accepted"
-        // })
-        // setMessCount(messageCount.length)
+        // setting logged user details
+        setUserDetails(...State.userLogin)
 
-        // setUserDetails(...State.userLogin)
-        // console.log(userDetails)
-
+        //setting van button active
         document.querySelectorAll('.nav-link')[0].classList.add('active');
 
+
+        //making fiends overall performance
+        
+        var getFriendList=[]
+        for(var i=0;i<State.usersArray.length;i++){
+            var checkUsersFrdDetails = State.usersArray[i].friendsArrayData
+            for(var j=0;j<checkUsersFrdDetails.length;j++){
+                if(State.usersArray[i].userName === State.userLogin[0].userName){
+                    getFriendList[getFriendList.length]=State.usersArray[i].friendsArray
+                }
+            }
+        }
+        
+        var frdsPerformanceData=[]
+        for(var k=0;k<State.userAccessTimeLineArray.length;k++){
+            for(var l=0;l<getFriendList.length;l++){
+                console.log(getFriendList[0])
+                if(State.userAccessTimeLineArray[k].username===getFriendList[l]){
+                   
+                    frdsPerformanceData[frdsPerformanceData.length]=State.userAccessTimeLineArray[k]
+                }
+            }
+        }
+        console.log(frdsPerformanceData)
+        // setFriendsPerformance(frdsPerformanceData)  
+        // dispatch(updateUserFriendsPerform(frdsPerformanceData))
     },[])
 
     return(
@@ -44,7 +71,7 @@ export const UserHomePage = () =>{
                                 <div className="col-12 d-flex flex-wrap">
                                     <div className="col-12 col-md-12 col-lg-6 p-3">
                                         <div className="myhome border rounded p-5">
-                                            <h4 className="text-color">Hii krishna</h4>
+                                            <h4 className="text-color">Hii {userDetails.firstName} {userDetails.lastName}</h4>
                                             <p className="text-color">Be happy and start your journey</p>
 
                                             <div className="col-12 d-flex flex-wrap mt-5">
@@ -96,15 +123,24 @@ export const UserHomePage = () =>{
                                     <div className="col-12 col-md-12 col-lg-6 p-3">
                                         <div className="myperformance border rounded p-5 d-flex flex-wrap">
                                             <div className="col-6 border-end">
-                                                <p className="col-12 px-4">My overall performance</p>
+                                                <p className="col-12 ps-5">My overall performance</p>
                                                 <div className="col-8 ms-4">
                                                     <CircularProgressbar value={0} text={`${0}%`} />
                                                 </div>
                                             </div>
-                                            <div className="col-6 px-4">
+                                            <div className="col-6 px-4 text-center">
                                                 <p>My friends overall performance</p>
-                                                <div className="">
-                                                    
+                                                <div className="col-12 d-flex flex-wrap">
+                                                    {
+                                                        State.userFriendsPerform.map((v,i)=>{
+                                                            return <div className="col-12 d-flex justify-content-center p-3 border-top border-bottom my-3" key={i}>
+                                                                <div className="col-10">
+                                                                    <CircularProgressbar className=" p-5" value={0} text={`${0}%`} />
+                                                                    <p className="col-12">user-name:  {  v.username}</p>
+                                                                </div>
+                                                            </div>
+                                                        })
+                                                    }
                                                 </div>
                                             </div>
                                         </div>

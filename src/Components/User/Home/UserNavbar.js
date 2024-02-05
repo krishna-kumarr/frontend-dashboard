@@ -18,13 +18,16 @@ export const UserNavbar = () =>{
     const [userDetails,setUserDetails] = useState({})
 
     useEffect(()=>{
+        // setting logged in page user details 
+        setUserDetails(...State.userLogin)
+
+        //message request notification count 
         if(State.userLogin.length>0){
             var friendRequest=State.userLogin[0].friendsArrayData.map((v,i)=>{
                 return v.status === "requested" ? v : null
             })
             setNotifyCount(friendRequest.length)
         }
-        
     },[])
 
     const handleHideSidebar = () =>{
@@ -87,8 +90,6 @@ export const UserNavbar = () =>{
             }) 
         })
         setNotifyCount(friendRequest.length)
-
-        console.log(friendRequest.length)
     }
 
     const handleRequestReject = () =>{
@@ -135,9 +136,14 @@ export const UserNavbar = () =>{
                                 {/* notification  */}
                                 <div className="col-lg-2 col-xl-1 text-center admin-notifuicaion position-relative cursor" data-bs-toggle="modal" data-bs-target="#staticBackdropMessage">
                                     <AiTwotoneMessage className="fs-3 text-secondary "/>
-                                    <span class="position-absolute top-0 start-75 translate-middle badge rounded-pill bg-danger">
-                                        2
-                                    </span>
+                                    {   
+                                        messCount>0 ? 
+                                            <span className="position-absolute top-0 start-75 translate-middle badge rounded-pill bg-danger">
+                                                {messCount}
+                                            </span>
+                                        : 
+                                            null
+                                    }
                                 </div>
                                 {/* notification  */}
                                 <div className="col-lg-2 col-xl-1 text-center admin-notifuicaion position-relative cursor" data-bs-toggle="modal" data-bs-target="#staticBackdropNotification">

@@ -66,7 +66,7 @@ export const UserSidebar = () =>{
                 </div>
 
                 {/* logOut */}
-                <div className="log-out logo justify-content-evenly" onClick={()=> pageRender("/")}>
+                <div className="log-out logo justify-content-evenly" onClick={()=> pageRender("/user/signIn")}>
                     <div className="col-3 logo-icon">
                         <IoExitSharp className="fs-2"/>
                     </div>

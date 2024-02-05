@@ -106,8 +106,7 @@ export const Peoples = () =>{
                                                                                     {
                                                                                         val.friendsArray.includes(State.userLogin[0].userName) ? 
                                                                                             <>
-                                                                                                <button type="button">friends</button>
-                                                                                                <BsFillPersonPlusFill className="profile-button-position"/>
+                                                                                                <button type="button" className="pe-3">friends</button>
                                                                                             </>
                                                                                         :
                                                                                             <>

@@ -38,7 +38,8 @@ export const Slice = createSlice({
                     performance:0
             }
         ],
-        userAccessTimeLineArray:[]
+        userAccessTimeLineArray:[],
+        userFriendsPerform:[]
     },
     reducers:{
         updateAdmin:(state,action)=>{
@@ -58,9 +59,12 @@ export const Slice = createSlice({
         },
         updateUserAccessTimeLineArray:(state,action)=>{
             state.userAccessTimeLineArray = action.payload
+        },
+        updateUserFriendsPerform:(state,action)=>{
+            state.userFriendsPerform = action.payload
         }
     }
 })
 
 export default Slice.reducer;
-export const{updateName,updateAdminLogin,updateUsersArray,updateuserLogin,updateTimelineArray,updateUserAccessTimeLineArray} = Slice.actions
+export const{updateName,updateAdminLogin,updateUsersArray,updateuserLogin,updateTimelineArray,updateUserAccessTimeLineArray,updateUserFriendsPerform} = Slice.actions

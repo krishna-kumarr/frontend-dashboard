@@ -136,7 +136,7 @@ export const Dashboard= () =>{
                                     messCount>0 ?
                                         <div className="col-12 d-flex flex-wrap">
                                             {State.usersArray.map((val,ind)=>{
-                                                return val.requesToAdmin!=="accepted" ? <div className="col-12 col-md-6 col-lg-4 d-flex flex-wrap border p-3 m-1" key={ind}>
+                                                return val.requesToAdmin!=="accepted" ? <div className="col-12 col-md-6 col-lg-3 d-flex flex-wrap border p-3 m-1" key={ind}>
                                                                 <div className="col-6 text-center">
                                                                 {val.firstName} {val.lastName}
                                                                 </div>
