@@ -12,6 +12,7 @@ import { Contact } from "../Home/Contact";
 import { ExistingTimeline } from "../Admin/CreateTimeline";
 import { Peoples } from "../User/Home/Peoples";
 import { UserTimeline } from "../User/Home/UserTimeline";
+import { AdminSecurityPractices } from "../Admin/AdminSecurityPractice";
 
 export const PageRedirector = () => {
 
@@ -29,6 +30,8 @@ export const PageRedirector = () => {
 
                 <Route path="/admin-home/time-line" element={<Timeline/>}/>
                 <Route path="/admin-home/time-line/create-timeline" element={<ExistingTimeline/>}/> 
+                <Route path="/admin-home/security-practice" element={<AdminSecurityPractices/>}/> 
+
 
 
                 <Route path="/user">

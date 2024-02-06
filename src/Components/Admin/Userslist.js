@@ -41,7 +41,7 @@ export const UsersList = () =>{
                                             <td>{val.firstName} {val.lastName}</td>
                                             <td>{val.userName}</td>
                                             <td>Offline</td>
-                                            <td>{val.lastOnline!=="" ? val.lastOnline : "null"}</td>
+                                            <td>{val.dateOfJoining!=="" ? val.dateOfJoining : "null"}</td>
                                             {
                                                 val.requesToAdmin==="accepted" ?   
                                                     <td className="text-success">{val.requesToAdmin}</td>

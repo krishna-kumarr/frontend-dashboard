@@ -30,6 +30,9 @@
     min-height: 91vh;
     max-height: 91vh;
 }
+.friends-performance-border{
+    border: 1px solid rgb(55 153 155);
+}
 .myproject{
     min-height: 30vh;
     max-height: 30vh;

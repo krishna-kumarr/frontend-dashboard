@@ -23,12 +23,12 @@ export const UserNavbar = () =>{
 
         //message request notification count 
         if(State.userLogin.length>0){
-            var friendRequest=State.userLogin[0].friendsArrayData.map((v,i)=>{
+            var friendRequest=State.userLogin[0].friendsArrayData.filter((v,i)=>{
                 return v.status === "requested" ? v : null
             })
             setNotifyCount(friendRequest.length)
         }
-    },[])
+    })
 
     const handleHideSidebar = () =>{
         var hide = document.getElementsByClassName('logo-content');

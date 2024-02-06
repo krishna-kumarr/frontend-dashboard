@@ -10,7 +10,7 @@ export const Timeline = () =>{
         ({data})=>data
     )
     const pageRender = useNavigate()
-    console.log(State)
+    
     useEffect(()=>{
         document.querySelectorAll('.nav-link')[2].classList.add('active');
         console.log(State)

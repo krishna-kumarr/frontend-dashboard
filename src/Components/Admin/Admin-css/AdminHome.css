@@ -23,7 +23,7 @@
     font-family: 'Italianno', cursive;
     font-family: 'Rajdhani', sans-serif;
 }
-.recent-activites{
+.recent-activites,.users-overall-performance{
     min-height: 50vh;
     max-height: 50vh;
     overflow: scroll;
@@ -40,4 +40,14 @@ table,tr,th,td{
     width: 50px;
     height: 50px;
     border-radius: 50%;
+}
+.overall-view-admin{
+    border: 1px solid rgb(55 153 155);
+}
+.pointer{
+    cursor: pointer;
+    transition:all .2s ease-in-out
+}
+.pointer:hover{
+    color: rgb(55 153 155);
 }

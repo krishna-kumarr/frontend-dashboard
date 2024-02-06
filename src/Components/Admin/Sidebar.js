@@ -61,7 +61,7 @@ export const Sidebar = () =>{
                             </div>
                         </li>
 
-                        <li className="nav-item p-0 my-2 col-12" onClick={()=>pageRender("/admin-home/time-line")}>
+                        <li className="nav-item p-0 my-2 col-12" onClick={()=>pageRender("/admin-home/security-practice")}>
                             <div className="nav-link logo ps-3" >
                                 <div className="col-3 logo-icon">
                                     <FaShieldVirus className="fs-4"/>
