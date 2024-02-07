@@ -127,9 +127,12 @@ export const Slice = createSlice({
         },
         updateUserAccessTimeLineArray:(state,action)=>{
             state.userAccessTimeLineArray = action.payload
+        },
+        updateSecurityPractices:(state,action)=>{
+            state.securityPractices = action.payload
         }
     }
 })
 
 export default Slice.reducer;
-export const{updateName,updateAdminLogin,updateUsersArray,updateuserLogin,updateTimelineArray,updateUserAccessTimeLineArray} = Slice.actions
+export const{updateName,updateAdminLogin,updateUsersArray,updateuserLogin,updateTimelineArray,updateUserAccessTimeLineArray,updateSecurityPractices} = Slice.actions

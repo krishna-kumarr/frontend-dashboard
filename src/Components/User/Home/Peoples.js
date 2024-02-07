@@ -56,7 +56,7 @@ export const Peoples = () =>{
             else{
                 list.push(State.usersArray[i])
             }
-            console.log(list)
+            console.log(list,"listof peoples")
         }
         
        
@@ -118,11 +118,11 @@ export const Peoples = () =>{
                                                                                          
                                                                                 </div>
                                                                                 <div className="col-12 col-sm-6 profile-button my-2">
-                                                                                    <button type="button">Message</button>
+                                                                                    <button type="button" className="py-2">Message</button>
                                                                                     <FaTelegramPlane className="profile-button-position"/>
                                                                                 </div>
-                                                                                <div className="col-12 col-sm-6 profile-button my-2">
-                                                                                    <button type="button">View profile</button>
+                                                                                <div className="col-12 col-sm-7 profile-button my-2">
+                                                                                    <button type="button" className="py-2">View profile</button>
                                                                                     <LuView className="profile-button-position"/>
                                                                                 </div>
                                                                             </div>

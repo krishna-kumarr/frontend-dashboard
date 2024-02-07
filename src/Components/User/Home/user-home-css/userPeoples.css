@@ -30,7 +30,7 @@
 }
 .profile-button-position{
     position: absolute;
-    top: .5rem;
+    top: .65rem;
     right: 1.8rem;
     transition: all .3s ease-in-out;
     pointer-events: none;

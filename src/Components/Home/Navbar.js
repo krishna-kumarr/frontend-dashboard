@@ -7,7 +7,7 @@ export const Navbar = () => {
     const pageRender = useNavigate()
     return(
         <>
-            <nav className="navbar bg-light sticky-top nav-height">
+            <nav className="navbar bg-light sticky-top nav-height px-4">
                 <div className="container-fluid">
                     <div className="col-12 d-flex flex-wrap justify-content-between align-items-center">
                         {/* logo  */}

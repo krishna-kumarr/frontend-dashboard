@@ -34,7 +34,7 @@ export const AdminHome = () =>{
                                 </div>
 
                                 {/* Recent activity  */}
-                                <div className="col-12 col-md-12 col-lg-6 p-3 mt-5">
+                                <div className="col-12 col-md-12 col-lg-5 p-3">
                                     <div className="border rounded p-4 bg-light recent-activites">
                                         <h5 className="border-bottom pb-2">Recent Activities</h5>
                                         
@@ -56,14 +56,14 @@ export const AdminHome = () =>{
                                 </div>
                                 
                                 {/* user overall performance  */}
-                                <div className="col-12 col-md-12 col-lg-6 p-3 mt-5">
+                                <div className="col-12 col-md-12 col-lg-7 p-3">
                                         <div className="bg-light users-overall-performance border rounded p-4">
                                             <h5 className="border-bottom pb-2 col-12">Users overall performance</h5>
                                             <div className="col-12 d-flex flex-wrap">
                                                 {
                                                     State.userAccessTimeLineArray.map((v,i)=>{
-                                                        return <div className="col-12 col-sm-6 col-md-4 d-flex justify-content-center p-3 overall-view-admin my-3 mx-1 rounded" key={i}>
-                                                            <div className="col-10">
+                                                        return <div className="col-12 col-sm-6 col-md-4 d-flex justify-content-center p-3" key={i}>
+                                                            <div className="col-12 overall-view-admin rounded">
                                                                 <CircularProgressbar className=" p-5" value={v.overallPerformance} text={`${v.overallPerformance}%`} />
                                                                 <p className="col-12 text-center pointer">User-name:  {  v.username}</p>
                                                             </div>

@@ -29,20 +29,12 @@ export const UserHomePage = () =>{
         setUserDetails(...State.userLogin)
 
         //2. setting van button active
-        document.querySelectorAll('.nav-link')[0].classList.add('active');
-
-
+        if(State.userLogin.requesToAdmin==="accepted"){
+            document.querySelectorAll('.nav-link')[0].classList.add('active');
+        }
 
         //3. making fiends overall performance
-        var getFriendList=[]
-        for(var i=0;i<State.usersArray.length;i++){
-            var checkUsersFrdDetails = State.usersArray[i].friendsArrayData
-            for(var j=0;j<checkUsersFrdDetails.length;j++){
-                if(State.usersArray[i].userName === State.userLogin[0].userName){
-                    getFriendList[getFriendList.length]=State.usersArray[i].friendsArray
-                }
-            }
-        }
+        var getFriendList=[...State.userLogin[0].friendsArray]
         var frdsPerformanceData=[]
         for(var k=0;k<State.userAccessTimeLineArray.length;k++){
             for(var l=0;l<getFriendList.length;l++){
@@ -80,17 +72,17 @@ export const UserHomePage = () =>{
 
         //5. initially calculaed and updated users performance in home page
         const initialCalculation = Math.ceil(taskStatus.task_completed/taskStatus.total_task*100)
-        const initialUpdation = State.userAccessTimeLineArray.map((v,i)=>{
+        const initialUpdation = State.userAccessTimeLineArray.filter((v,i)=>{
             return v.username===State.userLogin[0].userName ? {...v,overallPerformance:initialCalculation} : v
         })
-        console.log(initialUpdation)
-        // dispatch(updateUserAccessTimeLineArray(initialUpdation))
+        console.log(initialUpdation,"initialUpdation")
+        dispatch(updateUserAccessTimeLineArray(initialUpdation))
     },[])
 
     return(
         <>
-            {/* {
-                userDetails.requesToAdmin==="accepted" ? */}
+            {
+                userDetails.requesToAdmin==="accepted" ?
                     <div className="d-flex flex-wrap">
                         {/* admin sidebar */}
                         <UserSidebar/>
@@ -182,7 +174,7 @@ export const UserHomePage = () =>{
                             </div>
                         </div>
                     </div>
-                {/* :
+                :
                     <div className="d-flex flex-wrap justify-content-center align-items-center vh-100">
                         <div className="col-12 col-md-6 col-lg-5 col-xl-4 text-center text-secondary border rounded p-5">
                             <h1>Hello</h1>
@@ -193,7 +185,7 @@ export const UserHomePage = () =>{
                             <button type="button" className="btn btn-warning text-light" onClick={()=>pageRender("/")}>Return to Home page</button>
                         </div>
                     </div>
-            } */}
+            }
         </>
     )
 }
